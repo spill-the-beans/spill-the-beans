@@ -4,9 +4,10 @@ import axios from 'axios';
 
 const Form = () => {
 
-    const [userInput, setUserInput] = useState([]);
+    const [userInput, setUserInput] = useState('');
+    const [movieId, setMovieId] = useState('')
 
-    let movieId = 'rapunzel';
+    // let movieId = '';
 
     const handleInputChange = (event) => {
         setUserInput(event.target.value);
@@ -19,25 +20,30 @@ const Form = () => {
     }
 
     useEffect(() => {
-
         axios({
-
             url: `https://api.themoviedb.org/3/search/movie?`,
             params: {
                 api_key: `64c847f5af8190ca4e2eeab94df27f38`,
                 query: userInput
             }
-
         }).then((res) => {
-            console.log(res.data.results[0].id);
-            movieId = res.data.results[0].id;
+            setMovieId(res.data.results[0].id);
 
+            console.log(movieId);
+            axios({
+                url: `https://api.themoviedb.org/3/movie/${movieId}/keywords?`,
+                params: {
+                    api_key: `64c847f5af8190ca4e2eeab94df27f38`
+                }
+            }).then((res) => {
+                console.log(res);
+            })
         })
-    }, [userInput])
+    }, [userInput])    
 
     return (
         <main>
-            <form action="submit" onSubmit={handleSubmit}>
+            <form action="submit">
                 <label htmlFor="newMovie">Which movie do you want us to spill the beans on?</label>
                 <input
                     type="text"
@@ -45,9 +51,8 @@ const Form = () => {
                     onChange={handleInputChange}
                     value={userInput}
                 />
-                <button>Spill it</button>
+                <button onClick={handleSubmit}>Spill it</button>
             </form>
-            <MovieApi movieId={movieId} />
         </main>
     )
 

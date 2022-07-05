@@ -1,30 +1,28 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import Form from "./Form";
+// import axios from "axios";
+// import { useState, useEffect } from "react";
+// import Form from "./Form";
 
-const MovieApi = (props) => {
+// const MovieApi = (props) => {
 
+//     console.log(props.movieId);
 
-    useEffect(() => {
+//     useEffect(() => {
 
-        axios({
-            url: `https://api.themoviedb.org/3/movie/${props.movieId}/keywords?`,
+//         axios({
+//             url: `https://api.themoviedb.org/3/movie/${props.movieId}/keywords`,
 
-            params: {
-                api_key: `64c847f5af8190ca4e2eeab94df27f38`
+//             params: {
+//                 api_key: `64c847f5af8190ca4e2eeab94df27f38`
+//             }
 
-            }
+//         }).then((res) => {
+//             console.log(res);
 
-        }).then((res) => {
-            console.log(res);
+//         })
 
-        })
+//     }, [])
 
-    }, [])
+// }
 
-
-
-}
-
-export default MovieApi;
+// export default MovieApi;
 
