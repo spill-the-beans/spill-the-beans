@@ -5,9 +5,7 @@ import axios from 'axios';
 const Form = () => {
 
     const [userInput, setUserInput] = useState('');
-    const [movieId, setMovieId] = useState('')
-
-    // let movieId = '';
+    const [movieId, setMovieId] = useState('');
 
     const handleInputChange = (event) => {
         setUserInput(event.target.value);
@@ -16,43 +14,42 @@ const Form = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        setUserInput('');
     }
 
-    useEffect(() => {
-        axios({
-            url: `https://api.themoviedb.org/3/search/movie?`,
-            params: {
-                api_key: `64c847f5af8190ca4e2eeab94df27f38`,
-                query: userInput
-            }
-        }).then((res) => {
-            setMovieId(res.data.results[0].id);
+    const handleClick = () => {
+        // console.log(userInput);
+        if (userInput) {
 
-            console.log(movieId);
             axios({
-                url: `https://api.themoviedb.org/3/movie/${movieId}/keywords?`,
+
+                url: `https://api.themoviedb.org/3/search/movie?`,
                 params: {
-                    api_key: `64c847f5af8190ca4e2eeab94df27f38`
+                    api_key: `64c847f5af8190ca4e2eeab94df27f38`,
+                    query: userInput
                 }
+
             }).then((res) => {
-                console.log(res);
+                console.log(res.data.results[0]);
+                setMovieId(res.data.results[0].id);
             })
-        })
-    }, [userInput])    
+
+        }
+    }
+
+
 
     return (
         <main>
-            <form action="submit">
+            <form action="submit" onSubmit={handleSubmit}>
                 <label htmlFor="newMovie">Which movie do you want us to spill the beans on?</label>
                 <input
                     type="text"
                     id="newMovie"
                     onChange={handleInputChange}
-                    value={userInput}
                 />
-                <button onClick={handleSubmit}>Spill it</button>
+                <button onClick={handleClick}>Spill it</button>
             </form>
+            {/* <MovieApi movieId={movieId} /> */}
         </main>
     )
 
