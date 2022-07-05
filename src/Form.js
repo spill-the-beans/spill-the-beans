@@ -36,9 +36,6 @@ const Form = () => {
         }
     }
 
-
-
-
     return (
         <main>
             <form action="submit" onSubmit={handleSubmit}>
