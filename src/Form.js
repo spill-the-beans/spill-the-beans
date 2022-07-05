@@ -38,6 +38,7 @@ const Form = () => {
 
 
 
+
     return (
         <main>
             <form action="submit" onSubmit={handleSubmit}>
@@ -49,7 +50,7 @@ const Form = () => {
                 />
                 <button onClick={handleClick}>Spill it</button>
             </form>
-            {/* <MovieApi movieId={movieId} /> */}
+            <MovieApi movieId={movieId} />
         </main>
     )
 
