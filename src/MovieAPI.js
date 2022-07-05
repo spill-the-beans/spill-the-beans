@@ -1,43 +1,30 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Form from "./Form";
 
-const MovieAPI = () => {
-    const [userInput, setUserInput] = useState([]);
+const MovieApi = (props) => {
 
-    let movieTitle = `Matrix`;
 
-    useEffect(()=>{
+    useEffect(() => {
 
         axios({
+            url: `https://api.themoviedb.org/3/movie/${props.movieId}/keywords?`,
 
-            url: `https://api.themoviedb.org/3/search/movie?`,
             params: {
-                api_key: `64c847f5af8190ca4e2eeab94df27f38`,
-                query: movieTitle
+                api_key: `64c847f5af8190ca4e2eeab94df27f38`
+
             }
 
-        }).then((res)=>{
-            // console.log(res.data.results[0].id);
-            let movieId = res.data.results[0].id;
+        }).then((res) => {
+            console.log(res);
 
-            axios({
-                url: `https://api.themoviedb.org/3/movie/${movieId}/keywords?`,
-
-                params: {
-                    api_key: `64c847f5af8190ca4e2eeab94df27f38`
-
-                }
-
-            }).then((res)=>{
-                console.log(res);
-                
-            })
-            
         })
 
     }, [])
 
+
+
 }
 
-export default MovieAPI; 
+export default MovieApi;
 
