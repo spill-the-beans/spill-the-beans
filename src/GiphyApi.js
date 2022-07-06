@@ -3,25 +3,28 @@ import { useEffect, useState } from "react";
 import DisplayGifs from "./DisplayGifs";
 
 const GiphyApi = (props) => {
-    
+
     const [gifs, setGifs] = useState([]);
 
-    useEffect(()=> {
+    useEffect(() => {
         axios({
             url: `https://api.giphy.com/v1/gifs/search`,
-            params :{
+            params: {
                 api_key: `lEiZYK3u60pEaJJovk7HWZXNpT7lYF5h`,
                 q: props.keyword,
             }
-        }).then((res)=>{
-            console.log(res.data.data[0].images.original.webp);
-            setGifs(res.data.data[0].images.original.webp);
+        }).then((res) => {
+
+            const randomGif = Math.floor(Math.random() * res.data.data.length - 1);
+
+            console.log(res.data.data[randomGif].images.original.webp);
+            setGifs(res.data.data[randomGif].images.original.webp);
         })
-    },[])
+    }, [])
 
     return (
         <>
-            <DisplayGifs gifs={gifs}/>
+            <DisplayGifs gifs={gifs} />
         </>
     )
 
