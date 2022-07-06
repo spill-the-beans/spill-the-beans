@@ -1,6 +1,8 @@
 const Footer = () => {
     return(
-        <p>Created by us at Juno College</p>
+        <footer>
+            <p>Created by beans🫘 at Juno College</p>
+        </footer>
     )
 }
 
