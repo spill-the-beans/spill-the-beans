@@ -1,8 +1,8 @@
 const DisplayGifs = (props)=> {
     return(
-        <div>
+        <li>
             <img src= {props.gifs} alt="gifs" /> 
-        </div>
+        </li>
     )
 }
 

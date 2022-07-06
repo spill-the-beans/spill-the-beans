@@ -1,6 +1,8 @@
 const Header = () => {
     return(
-        <h1>Spill The Beans</h1>
+        <header>
+            <h1>Spill The Beans</h1>
+        </header>
     )
 }
 

@@ -1,5 +1,5 @@
 import MovieApi from './MovieApi';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 const Form = () => {
@@ -13,26 +13,21 @@ const Form = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
+        
     }
 
     const handleClick = () => {
-        // console.log(userInput);
         if (userInput) {
-
             axios({
-
                 url: `https://api.themoviedb.org/3/search/movie?`,
                 params: {
                     api_key: `64c847f5af8190ca4e2eeab94df27f38`,
                     query: userInput
                 }
-
             }).then((res) => {
                 console.log(res.data.results[0]);
                 setMovieId(res.data.results[0].id);
             })
-
         }
     }
 
@@ -47,7 +42,9 @@ const Form = () => {
                 />
                 <button onClick={handleClick}>Spill it</button>
             </form>
-            <MovieApi movieId={movieId} />
+            <ul>
+                <MovieApi movieId={movieId} />
+            </ul>
         </main>
     )
 

@@ -1,12 +1,10 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Form from "./Form";
 import GiphyApi from "./GiphyApi";
 
 const MovieApi = (props) => {
 
     const [movieKeyword, setMovieKeyword] = useState([]);
-
 
     useEffect(() => {
 
@@ -28,19 +26,13 @@ const MovieApi = (props) => {
     
 }, [props.movieId])
 
-
-    {
-        return (
-            
-            movieKeyword.slice(0,3).map((keyword)=>{
-                return (
-                    <GiphyApi key={keyword.id} keyword={keyword.name} />
-                )
-            })
-
-        )
-    }
-
+    return (
+        movieKeyword.slice(0,3).map((keyword)=>{
+            return (
+                <GiphyApi key={keyword.id} keyword={keyword.name} />
+            )
+        })
+    )
 }
 
 export default MovieApi;
