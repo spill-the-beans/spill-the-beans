@@ -17,6 +17,7 @@ const MovieApi = (props) => {
                 setMovieKeyword(res.data.keywords);
                 console.log(res.data.keywords);
             })
+            setMovieKeyword([])
         }
 }, [props.movieId])
 

@@ -20,6 +20,7 @@ const GiphyApi = (props) => {
             console.log(res.data.data[randomGif].images.original.webp);
             setGifs(res.data.data[randomGif].images.original.webp);
         })
+
     }, [])
 
     return (
@@ -27,7 +28,6 @@ const GiphyApi = (props) => {
             <DisplayGifs gifs={gifs} />
         </>
     )
-
 }
 
 export default GiphyApi;
