@@ -4,19 +4,19 @@ import axios from 'axios';
 
 const Form = () => {
 
+    // initialize state user's input of movie title
     const [userInput, setUserInput] = useState('');
+    // initialize state for movie ID of searched movie with user's input
     const [movieId, setMovieId] = useState('');
 
+    // take the value of user's input and update state upon onChange
     const handleInputChange = (event) => {
         setUserInput(event.target.value);
     }
 
+    // run API call on onSubmit event with user's input movie title and returns its id and update state of movieId
     const handleSubmit = (event) => {
         event.preventDefault();
-        
-    }
-
-    const handleClick = () => {
         if (userInput) {
             axios({
                 url: `https://api.themoviedb.org/3/search/movie?`,
@@ -29,6 +29,7 @@ const Form = () => {
                 setMovieId(res.data.results[0].id);
             })
         }
+        setUserInput('');
     }
 
     return (
@@ -39,8 +40,9 @@ const Form = () => {
                     type="text"
                     id="newMovie"
                     onChange={handleInputChange}
+                    value={userInput}
                 />
-                <button onClick={handleClick}>Spill it</button>
+                <button>Spill it</button>
             </form>
             <ul>
                 <MovieApi movieId={movieId} />
