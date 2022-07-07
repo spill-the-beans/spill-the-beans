@@ -4,9 +4,11 @@ import DisplayGifs from "./DisplayGifs";
 
 const GiphyApi = (props) => {
 
+    // initialize state for gifs of passed movie keyword from MovieApi component
     const [gifs, setGifs] = useState([]);
 
     useEffect(() => {
+        // make an axios call to get a list of gif for each movie keywords passed from Movie Api
         axios({
             url: `https://api.giphy.com/v1/gifs/search`,
             params: {
@@ -15,7 +17,8 @@ const GiphyApi = (props) => {
             }
         }).then((res) => {
 
-            const randomGif = Math.floor(Math.random() * res.data.data.length - 1);
+            // randomize the list of gif (array) index number
+            const randomGif = Math.floor(Math.random() * res.data.data.length);
 
             console.log(res.data.data[randomGif].images.original.webp);
             setGifs(res.data.data[randomGif].images.original.webp);

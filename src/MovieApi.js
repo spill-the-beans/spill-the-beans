@@ -4,10 +4,13 @@ import GiphyApi from "./GiphyApi";
 
 const MovieApi = (props) => {
 
+    // initialize state for movie keyword of passed movie ID from Form component
     const [movieKeyword, setMovieKeyword] = useState([]);
 
+    // on component mount
     useEffect(() => {
         if (props.movieId){
+            // make an another axios call to get a list of movie keywords from movie ID
             axios({
                 url: `https://api.themoviedb.org/3/movie/${props.movieId}/keywords`,
                 params: {
@@ -17,12 +20,14 @@ const MovieApi = (props) => {
                 setMovieKeyword(res.data.keywords);
                 console.log(res.data.keywords);
             })
+            // reset the state of userInput and movieID to an empty string
             setMovieKeyword([])
         }
 }, [props.movieId])
 
     return (
-        movieKeyword.slice(0,3).map((keyword)=>{
+        // passing only 3 keywords randomly to GiphyApi component
+        movieKeyword.sort(() => 0.5 - Math.random()).slice(0,3).map((keyword)=>{
             return (
                 <GiphyApi key={keyword.id} keyword={keyword.name} />
             )
