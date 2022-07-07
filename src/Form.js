@@ -24,7 +24,7 @@ const Form = () => {
                 query: userInput
             }
         }).then((res) => {
-            console.log(res.data.results[0]);
+            // console.log(res.data.results[0]);
             setMovieId(res.data.results[0].id);
         })
         // reset the state of userInput and movieID to an empty string

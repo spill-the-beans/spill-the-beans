@@ -6,6 +6,8 @@ const MovieApi = (props) => {
 
     // initialize state for movie keyword of passed movie ID from Form component
     const [movieKeyword, setMovieKeyword] = useState([]);
+    // initialize state for selected keyword once retrieved from 2nd movie api call
+    const [selectedKeyword, setSelectedKeyword] = useState([]);
 
     // on component mount
     useEffect(() => {
@@ -20,14 +22,18 @@ const MovieApi = (props) => {
                 setMovieKeyword(res.data.keywords);
                 console.log(res.data.keywords);
             })
-            // reset the state of userInput and movieID to an empty string
-            setMovieKeyword([])
+            setMovieKeyword([]);
         }
-}, [props.movieId])
+    }, [props.movieId])
+
+    // selecting only 3 keywords randomly
+    useEffect( () => {
+        setSelectedKeyword(movieKeyword.sort(() => 0.5 - Math.random()).slice(0,3))
+    }, [movieKeyword])
 
     return (
-        // passing only 3 keywords randomly to GiphyApi component
-        movieKeyword.sort(() => 0.5 - Math.random()).slice(0,3).map((keyword)=>{
+        //  pass randomly selected 3 keywords to GiphyApi component
+            selectedKeyword.map((keyword) => {
             return (
                 <GiphyApi key={keyword.id} keyword={keyword.name} />
             )

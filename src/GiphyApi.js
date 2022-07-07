@@ -24,7 +24,7 @@ const GiphyApi = (props) => {
             setGifs(res.data.data[randomGif].images.original.webp);
         })
 
-    }, [])
+    }, [props.keyword])
 
     return (
         <>
