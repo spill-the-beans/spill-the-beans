@@ -6,9 +6,11 @@ import Form from './Form';
 function App() {
   return (
     <>
-      <Header />
-      <Form />
-      <Footer />
+      <body className="wrapper">
+        <Header />
+        <Form />
+        <Footer />
+      </body>
     </>
   );
 }

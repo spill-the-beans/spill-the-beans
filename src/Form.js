@@ -39,22 +39,24 @@ const Form = () => {
 
     return (
         <main>
-            <form action="submit" onSubmit={handleSubmit}>
-                <label htmlFor="newMovie">Which movie do you want us to spill the beans on?</label>
-                <input
-                    required
-                    type="text"
-                    id="newMovie"
-                    onChange={handleInputChange}
-                    value={userInput}
-                />
-                <button>Spill it</button>
-            </form>
+            <div className='formFlex'>
+                <form action="submit" onSubmit={handleSubmit}>
+                    <label htmlFor="newMovie">Which movie do you want us to spill the beans on?</label>
+                    <input
+                        required
+                        type="text"
+                        id="newMovie"
+                        onChange={handleInputChange}
+                        value={userInput}
+                    />
+                    <button>Spill it</button>
+                </form>
+            </div>
             <Link to="/savedgifs">                          <button>Show my saved spoilers</button>
             </Link>
 
+            <h2>{movieTitle}</h2>
             <ul>
-                <h2>{movieTitle}</h2>
                 {/* pass movie id to second movie API call in MovieApi component as props */}
                 <MovieApi movieId={movieId} movieTitle={movieTitle} />
 
