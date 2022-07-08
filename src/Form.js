@@ -24,9 +24,10 @@ const Form = () => {
                 query: userInput
             }
         }).then((res) => {
-            console.log(res.data.results[0]);
+            // console.log(res.data.results[0]);
             setMovieId(res.data.results[0].id);
         })
+        // reset the state of userInput and movieID to an empty string
         setUserInput('');
         setMovieId('');
     }
@@ -45,6 +46,7 @@ const Form = () => {
                 <button>Spill it</button>
             </form>
             <ul>
+                {/* pass movie id to second movie API call in MovieApi component as props */}
                 <MovieApi movieId={movieId} />
             </ul>
         </main>
