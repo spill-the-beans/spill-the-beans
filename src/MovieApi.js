@@ -35,7 +35,7 @@ const MovieApi = (props) => {
         //  pass randomly selected 3 keywords to GiphyApi component
             selectedKeyword.map((keyword) => {
             return (
-                <GiphyApi key={keyword.id} keyword={keyword.name} />
+                <GiphyApi key={keyword.id} keyword={keyword.name} movieTitle={props.movieTitle} />
             )
         })
     )

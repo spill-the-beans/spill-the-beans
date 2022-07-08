@@ -9,6 +9,8 @@ const Form = () => {
     // initialize state for movie ID of searched movie with user's input
     const [movieId, setMovieId] = useState('');
 
+    const [movieTitle, setMovieTitle] = useState('');
+
     // take the value of user's input and update state upon onChange
     const handleInputChange = (event) => {
         setUserInput(event.target.value);
@@ -26,10 +28,12 @@ const Form = () => {
         }).then((res) => {
             // console.log(res.data.results[0]);
             setMovieId(res.data.results[0].id);
+            setMovieTitle(res.data.results[0].title)
         })
         // reset the state of userInput and movieID to an empty string
         setUserInput('');
         setMovieId('');
+        setMovieTitle('');
     }
 
     return (
@@ -46,8 +50,10 @@ const Form = () => {
                 <button>Spill it</button>
             </form>
             <ul>
+                <h2>{movieTitle}</h2>
                 {/* pass movie id to second movie API call in MovieApi component as props */}
-                <MovieApi movieId={movieId} />
+                <MovieApi movieId={movieId} movieTitle={movieTitle}/>
+
             </ul>
         </main>
     )
