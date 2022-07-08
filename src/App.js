@@ -12,7 +12,7 @@ function App() {
       
       <Routes>
         <Route path="/" element={<Form />}></Route>
-        <Route exact path="/savedgifs" element={<SavedGifs />} />
+        <Route path="/savedgifs" element={<SavedGifs />} />
       </Routes>
       
       <Footer />
