@@ -1,28 +1,60 @@
 import { useEffect, useState } from "react";
+import { onValue, getDatabase, ref, remove } from "firebase/database"; 
+import firebase from "./firebase";
+import { Link } from "react-router-dom";
 
-const SavedGifs = (props) => {
+const SavedGifs = () => {
 
-    const gifsArray = props.savedGifs;
-
-    console.log(gifsArray);
-
-    const [savedGifs, setSavedGifs] = useState();
+    const [savedGifs, setSavedGifs] = useState([]);
+    const [gifSlice, setGifSlice] = useState([]);
 
     useEffect(() => {
-        setSavedGifs(gifsArray.slice(0));
+        setGifSlice(savedGifs.slice(0).reverse());
 
-    }, [])
+    }, [savedGifs])
 
+    useEffect(() => {
+
+        const database = getDatabase(firebase);
+        const dbRef = ref(database);
+
+        onValue(dbRef, (response) => {
+
+            const data = response.val();
+
+            const newState = [];
+            for (let key in data) {
+                newState.push(
+                    {
+                        key: key,
+                        title: data[key].title,
+                        img: data[key].img,
+                    }
+                )
+            }
+            setSavedGifs(newState);
+        });
+    }, []);  
+    
+    const handleRemove = (gifId) => {
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `/${gifId}`);
+
+        remove(dbRef);
+    }
 
     return (
+        <>
+        <Link to="/"><button>Go BACK to HOEMPAGE</button></Link>
         <ul className="savedGifsContainer">
-            {gifsArray.map((savedGif) => {
+
+            {gifSlice.map((savedGif) => {
                 console.log(savedGif);
                 return (
                     <li key={savedGif.key}>
-                        {/* <button className="remove"
-                            onClick={() => props.handleRemove(savedMovie.key)}
-                        >❌</button> */}
+                        <button className="remove"
+                            onClick={() => handleRemove(savedGif.key)}
+                        >❌</button>
                         <h2>{savedGif.title}</h2>
                         <img src={savedGif.img} alt={savedGif.title} />
                     </li>
@@ -30,7 +62,7 @@ const SavedGifs = (props) => {
             })
             }
         </ul>
-
+        </>
     )
 }
 

@@ -1,18 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import firebase from "./firebase";
-import { getDatabase, push, ref, onValue } from 'firebase/database';
-import SavedGifs from './SavedGifs';
-import { Routes, Route } from 'react-router-dom';
-
-
-
+import { getDatabase, push, ref } from 'firebase/database';
 
 const DisplayGifs = (props) => {
     console.log(props.gifs);
     // randomize the list of gif (array) index number
     const [randomIndex, setRandomIndex] = useState(0);
 
-    const [savedGifs, setSavedGifs] = useState([]);
+    // const [savedGifs, setSavedGifs] = useState([]);
 
     // onClick event, we want to return new random index number
     const handleClick = () => {
@@ -33,29 +28,6 @@ const DisplayGifs = (props) => {
         push(dbRef, gifObject);
     }
 
-    useEffect(() => {
-
-        const database = getDatabase(firebase);
-        const dbRef = ref(database);
-
-        onValue(dbRef, (response) => {
-
-            const data = response.val();
-
-            const newState = [];
-            for (let key in data) {
-                newState.push(
-                    {
-                        key: key,
-                        title: data[key].title,
-                        img: data[key].img,
-                    }
-                )
-            }
-            setSavedGifs(newState);
-        });
-    }, []);
-
     return (
         <>
             {
@@ -73,9 +45,6 @@ const DisplayGifs = (props) => {
                         </li>
                     </>
             }
-            <Routes>
-                <Route path="/savedgifs" element={<SavedGifs savedGifs={savedGifs} />} />
-            </Routes>
         </>
     )
 }

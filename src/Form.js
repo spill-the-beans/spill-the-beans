@@ -1,12 +1,13 @@
 import MovieApi from './MovieApi';
 import { useState } from 'react';
 import axios from 'axios';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Form = () => {
 
     // initialize state user's input of movie title
     const [userInput, setUserInput] = useState('');
+
     // initialize state for movie ID of searched movie with user's input
     const [movieId, setMovieId] = useState('');
 
@@ -27,7 +28,6 @@ const Form = () => {
                 query: userInput
             }
         }).then((res) => {
-            // console.log(res.data.results[0]);
             setMovieId(res.data.results[0].id);
             setMovieTitle(res.data.results[0].title)
         })
@@ -48,20 +48,18 @@ const Form = () => {
                     onChange={handleInputChange}
                     value={userInput}
                 />
-                <button>Spill it</button>
+            <button>Spill it</button>
             </form>
-            <Link to="/savedgifs">                          <button>Show my saved spoilers</button>
-            </Link>
-
+            
+            <Link to="/savedgifs"><button>Show my saved spoilers</button></Link>
+                
             <ul>
                 <h2>{movieTitle}</h2>
                 {/* pass movie id to second movie API call in MovieApi component as props */}
                 <MovieApi movieId={movieId} movieTitle={movieTitle} />
-
             </ul>
         </main >
     )
-
 }
 
 export default Form;
