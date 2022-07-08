@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { onValue, getDatabase, ref, remove } from "firebase/database"; 
 import firebase from "./firebase";
+import { Link } from "react-router-dom";
 
-const SavedGifs = (props) => {
+const SavedGifs = () => {
 
     const [savedGifs, setSavedGifs] = useState([]);
     const [gifSlice, setGifSlice] = useState([]);
@@ -44,6 +45,7 @@ const SavedGifs = (props) => {
 
     return (
         <>
+        <Link to="/"><button>Go BACK to HOEMPAGE</button></Link>
         <ul className="savedGifsContainer">
 
             {gifSlice.map((savedGif) => {

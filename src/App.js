@@ -2,13 +2,19 @@ import './App.css';
 import Header from './Header';
 import Footer from './Footer';
 import Form from './Form';
-import { Link, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import SavedGifs from './SavedGifs';
 
 function App() {
   return (
     <>
-      <Header />     
-      <Form />
+      <Header />
+      
+      <Routes>
+        <Route path="/" element={<Form />}></Route>
+        <Route exact path="/savedgifs" element={<SavedGifs />} />
+      </Routes>
+      
       <Footer />
     </>
   );

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import DisplayGifs from "./DisplayGifs";
-import { Routes, Route, Link } from 'react-router-dom';
 
 const GiphyApi = (props) => {
 
@@ -24,7 +23,7 @@ const GiphyApi = (props) => {
 
     return (
         <>
-        <DisplayGifs gifs={gifs} movieTitle={props.movieTitle} />
+            <DisplayGifs gifs={gifs} movieTitle={props.movieTitle} />
         </>
     )
 }

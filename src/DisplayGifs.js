@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import firebase from "./firebase";
-import { getDatabase, push, ref, onValue } from 'firebase/database';
+import { getDatabase, push, ref } from 'firebase/database';
 
 const DisplayGifs = (props) => {
     console.log(props.gifs);

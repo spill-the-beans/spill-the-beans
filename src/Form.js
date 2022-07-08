@@ -1,10 +1,7 @@
 import MovieApi from './MovieApi';
 import { useState } from 'react';
 import axios from 'axios';
-import { Link, Routes, Route } from 'react-router-dom';
-import SavedGifs from './SavedGifs';
-import DisplayGifs from './DisplayGifs';
-import GiphyApi from './GiphyApi';
+import { Link } from 'react-router-dom';
 
 const Form = () => {
 
@@ -15,8 +12,6 @@ const Form = () => {
     const [movieId, setMovieId] = useState('');
 
     const [movieTitle, setMovieTitle] = useState('');
-
-    const [displayGifs, setDisplayGifs] = useState(true);
 
     // take the value of user's input and update state upon onChange
     const handleInputChange = (event) => {
@@ -33,7 +28,6 @@ const Form = () => {
                 query: userInput
             }
         }).then((res) => {
-            // console.log(res.data.results[0]);
             setMovieId(res.data.results[0].id);
             setMovieTitle(res.data.results[0].title)
         })
@@ -54,31 +48,16 @@ const Form = () => {
                     onChange={handleInputChange}
                     value={userInput}
                 />
-            <button onClick={() => setDisplayGifs(true)}>Spill it</button>
+            <button>Spill it</button>
             </form>
-
-            <>
-            {
-                displayGifs
-                ?
-                <>
-                <Link to="/savedgifs"><button>Show my saved spoilers</button>
-                </Link>
+            
+            <Link to="/savedgifs"><button>Show my saved spoilers</button></Link>
                 
-                <Routes>
-                    <Route exact path="/savedgifs" element={<SavedGifs />} />
-                    {/* <Route path="/displaygifs" element={<DisplayGifs />} /> */}
-                </Routes>
-                </>
-            :
             <ul>
                 <h2>{movieTitle}</h2>
                 {/* pass movie id to second movie API call in MovieApi component as props */}
                 <MovieApi movieId={movieId} movieTitle={movieTitle} />
-
             </ul>
-            }
-            </>
         </main >
     )
 }
