@@ -1,16 +1,22 @@
 import MovieApi from './MovieApi';
 import { useState } from 'react';
 import axios from 'axios';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Routes, Route } from 'react-router-dom';
+import SavedGifs from './SavedGifs';
+import DisplayGifs from './DisplayGifs';
+import GiphyApi from './GiphyApi';
 
 const Form = () => {
 
     // initialize state user's input of movie title
     const [userInput, setUserInput] = useState('');
+
     // initialize state for movie ID of searched movie with user's input
     const [movieId, setMovieId] = useState('');
 
     const [movieTitle, setMovieTitle] = useState('');
+
+    const [displayGifs, setDisplayGifs] = useState(true);
 
     // take the value of user's input and update state upon onChange
     const handleInputChange = (event) => {
@@ -48,20 +54,33 @@ const Form = () => {
                     onChange={handleInputChange}
                     value={userInput}
                 />
-                <button>Spill it</button>
+            <button onClick={() => setDisplayGifs(true)}>Spill it</button>
             </form>
-            <Link to="/savedgifs">                          <button>Show my saved spoilers</button>
-            </Link>
 
+            <>
+            {
+                displayGifs
+                ?
+                <>
+                <Link to="/savedgifs"><button>Show my saved spoilers</button>
+                </Link>
+                
+                <Routes>
+                    <Route exact path="/savedgifs" element={<SavedGifs />} />
+                    {/* <Route path="/displaygifs" element={<DisplayGifs />} /> */}
+                </Routes>
+                </>
+            :
             <ul>
                 <h2>{movieTitle}</h2>
                 {/* pass movie id to second movie API call in MovieApi component as props */}
                 <MovieApi movieId={movieId} movieTitle={movieTitle} />
 
             </ul>
+            }
+            </>
         </main >
     )
-
 }
 
 export default Form;
