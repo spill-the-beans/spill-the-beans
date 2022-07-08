@@ -23,17 +23,18 @@ const DisplayGifs = (props)=> {
         // } else {
         //     setRandomIndex(randomIndex + 1);
         // }
-        if (randomIndex === displayGif.length - 1) {
-            setRandomIndex(0);
-        } else {
-            setRandomIndex(randomIndex + 1);
-        }
+        // if (randomIndex === displayGif.length - 1) {
+        //     setRandomIndex(0);
+        // } else {
+        //     setRandomIndex(randomIndex + 1);
+        // }
         // if (randomGif < displayGif.length - 1) {
         //     setRandomIndex(randomGif + 1);
         // } else {
         //     setRandomIndex(0);
         // }
         // setRandomIndex(randomGif);
+        setRandomIndex(Math.floor(Math.random() * displayGif.length));
     }
     // const nextGif = function() {
     // }
