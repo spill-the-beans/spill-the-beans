@@ -16,15 +16,18 @@ const GiphyApi = (props) => {
                 q: props.keyword,
             }
         }).then((res) => {
+            // console.log(res.data.data);
+            // // randomize the list of gif (array) index number
+            // const randomGif = Math.floor(Math.random() * res.data.data.length);
 
-            // randomize the list of gif (array) index number
-            const randomGif = Math.floor(Math.random() * res.data.data.length);
-
-            console.log(res.data.data[randomGif].images.original.webp);
-            setGifs(res.data.data[randomGif].images.original.webp);
+            // console.log(res.data.data[randomGif].images.original.webp);
+            // setGifs(res.data.data[randomGif].images.original.webp);
+            setGifs(res.data.data);
         })
 
     }, [props.keyword])
+
+    console.log(gifs);
 
     return (
         <>
