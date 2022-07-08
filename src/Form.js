@@ -1,6 +1,7 @@
 import MovieApi from './MovieApi';
 import { useState } from 'react';
 import axios from 'axios';
+import { Link, Outlet } from 'react-router-dom';
 
 const Form = () => {
 
@@ -49,13 +50,16 @@ const Form = () => {
                 />
                 <button>Spill it</button>
             </form>
+            <Link to="/savedgifs">                          <button>Show my saved spoilers</button>
+            </Link>
+
             <ul>
                 <h2>{movieTitle}</h2>
                 {/* pass movie id to second movie API call in MovieApi component as props */}
-                <MovieApi movieId={movieId} movieTitle={movieTitle}/>
+                <MovieApi movieId={movieId} movieTitle={movieTitle} />
 
             </ul>
-        </main>
+        </main >
     )
 
 }
