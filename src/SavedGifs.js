@@ -29,6 +29,7 @@ const SavedGifs = () => {
                         key: key,
                         title: data[key].title,
                         img: data[key].img,
+                        keyword: data[key].keyword
                     }
                 )
             }
@@ -57,6 +58,7 @@ const SavedGifs = () => {
                             >❌</button>
                             <h2>{savedGif.title}</h2>
                             <img src={savedGif.img} alt={savedGif.title} />
+                            <h4>{savedGif.keyword}</h4>
                         </li>
                     )
                 })

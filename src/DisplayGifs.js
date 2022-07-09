@@ -14,7 +14,7 @@ const DisplayGifs = (props) => {
     }
 
     // onClick event, user can push and save the displayed gif into firebase
-    const handleSave = (savedId, savedMovie, savedGifs) => {
+    const handleSave = (savedId, savedMovie, savedGifs, savedKeyword) => {
 
         const database = getDatabase(firebase);
         const dbRef = ref(database);
@@ -22,7 +22,8 @@ const DisplayGifs = (props) => {
         const gifObject = {
             'key': savedId,
             'title': savedMovie,
-            'img': savedGifs
+            'img': savedGifs,
+            'keyword': savedKeyword
         }
         push(dbRef, gifObject);
     }
@@ -37,7 +38,7 @@ const DisplayGifs = (props) => {
                     <>
                         <li key={props.gifs[randomIndex].id}>
                             <button
-                                onClick={() => handleSave(props.gifs[randomIndex].id, props.movieTitle, props.gifs[randomIndex].images.original.url)}
+                                onClick={() => handleSave(props.gifs[randomIndex].id, props.movieTitle, props.gifs[randomIndex].images.original.url, props.movieKeyword)}
                             >Keep it!</button>
                             <div className="gifContainer">
                                 <p>Click me!</p>
