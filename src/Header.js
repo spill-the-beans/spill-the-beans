@@ -1,7 +1,6 @@
-import { Routes } from "react-router-dom";
 
 const Header = () => {
-    return(
+    return (
         <header>
             <h1>Spill The Beans</h1>
         </header>

@@ -11,6 +11,7 @@ html { box-sizing: border-box;}
 html {
   font-size: 125%;
   background-color: rgb(4, 4, 29);
+  overflow-x: hidden;
 }
 
 * {
@@ -22,7 +23,7 @@ html {
 }
 h1 {
   font-family: 'Kanit', sans-serif;
-  font-size: 2.3rem;
+  font-size: 3.3rem;
   color: #6b6eec;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
@@ -53,7 +54,7 @@ h1::before {
       0 0 4px #fff,
       0 0 11px #fff,
       0 0 19px #fff,
-      0 0 40px #9d9eff,
+      0 0 40px #6b6eec,
       0 0 80px #6b6eec,
       0 0 90px #6b6eec,
       0 0 100px #6b6eec,
@@ -67,8 +68,11 @@ h1::before {
 }
 
 h2 {
-  font-size: 1.4rem;
+  font-size: 2rem;
   margin-top: 3rem;
+  text-transform: uppercase;
+  color: #6b6eec;
+  text-shadow: 0 0 0.5rem rgb(162, 118, 250), 0 0 0.5rem #9495f5;
 }
 
 .wrapper {
@@ -115,9 +119,6 @@ button {
   background-color: white;
   cursor: pointer;
   color: #8ef9f4;
-}
-
-.neonButton {
   color: #6b6eec;
   margin-bottom: 5rem;
   display: inline-block;
@@ -131,28 +132,15 @@ button {
   transition: 0.1s linear;
 }
 
-/* .neonButton::before {
-  content: '';
-  position: absolute;
-  background: #8ef9f4;
-  top: 110%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: perspective(2rem) rotateX(40deg) scale(1, 0.35);
-  filter: blur(2em);
-  opacity: 0.7;
-  transition: opacity 0.1s linear;
-} */
 
-.neonButton:hover,
-.neonButton:focus {
+button:hover,
+button:focus {
   background: #8ef9f4;
   color: #141640;
   text-shadow: none;
 }
 
-.neonButton::after {
+button::after {
   content: '';
   position: absolute;
   top: 0;
@@ -164,14 +152,13 @@ button {
   transition: opacity 0.1s linear;
 }
 
-.neonButton:hover::before,
-.neonButton:focus::before {
+button:hover::after,
+button:focus::after {
   opacity: 1;
 }
 
-.neonButton:hover::after,
-.neonButton:focus::after {
-  opacity: 1;
+form a button {
+  width: 97%;
 }
 
 ul li {
@@ -179,17 +166,49 @@ ul li {
   width: calc((100% / 3) - 0.2rem);
   padding: 1rem;
   border: solid 3px #6b6eec;
+  box-shadow: inset 0 0 1rem 0 #6b6eec,
+  0 0 1rem 0 #6b6eec;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   margin: 1rem 0.1rem;
 }
 
+p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  font-size: 2rem;
+  margin: 0;
+}
+
 img {
-  max-width: 100%;
+  width: 100%;
   object-fit: cover;
   display: block;
   height: 100%;
   cursor: pointer;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+}
+
+.gifContainer {
+  height: 300px;
+  width: 100%;
+  position: relative;
+}
+
+img:hover,
+img:focus {
+  scale: 1.07;
+  opacity: 0.3;
+}
+
+.gifContainer:hover p,
+.gifContainer:focus p {
+  opacity: 1;
 }
 
 ul {
@@ -202,8 +221,16 @@ ul button {
   margin-bottom: 0.5rem;
 }
 
+.savedGifsContainer img:hover,
+.savedGifsContainer img:focus {
+  opacity: 1;
+  scale: 1;
+  cursor: default;
+}
+
 footer {
-  margin-top: 5rem;
+  margin: 0;
+  color: #fff;
 }
 
 /* Media Queries to make de website responsive */

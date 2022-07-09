@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { onValue, getDatabase, ref, remove } from "firebase/database"; 
+import { onValue, getDatabase, ref, remove } from "firebase/database";
 import firebase from "./firebase";
 import { Link } from "react-router-dom";
 
@@ -34,8 +34,8 @@ const SavedGifs = () => {
             }
             setSavedGifs(newState);
         });
-    }, []);  
-    
+    }, []);
+
     const handleRemove = (gifId) => {
         const database = getDatabase(firebase);
         const dbRef = ref(database, `/${gifId}`);
@@ -45,23 +45,23 @@ const SavedGifs = () => {
 
     return (
         <>
-        <Link to="/"><button>Go BACK to HOEMPAGE</button></Link>
-        <ul className="savedGifsContainer">
+            <Link to="/"><button>Go BACK to HOMEPAGE</button></Link>
+            <ul className="savedGifsContainer">
 
-            {gifSlice.map((savedGif) => {
-                console.log(savedGif);
-                return (
-                    <li key={savedGif.key}>
-                        <button className="remove"
-                            onClick={() => handleRemove(savedGif.key)}
-                        >❌</button>
-                        <h2>{savedGif.title}</h2>
-                        <img src={savedGif.img} alt={savedGif.title} />
-                    </li>
-                )
-            })
-            }
-        </ul>
+                {gifSlice.map((savedGif) => {
+                    console.log(savedGif);
+                    return (
+                        <li key={savedGif.key}>
+                            <button className="remove"
+                                onClick={() => handleRemove(savedGif.key)}
+                            >❌</button>
+                            <h2>{savedGif.title}</h2>
+                            <img src={savedGif.img} alt={savedGif.title} />
+                        </li>
+                    )
+                })
+                }
+            </ul>
         </>
     )
 }
