@@ -49,11 +49,11 @@ const Form = () => {
                         onChange={handleInputChange}
                         value={userInput}
                     />
-                <button>Spill it</button>
+                    <button className='neonButton'>Spill it</button>
                 </form>
             </div>
-            <Link to="/savedgifs"><button>Show my saved spoilers</button></Link>
-                
+            <Link to="/savedgifs"><button className='neonButton'>Show my saved spoilers</button></Link>
+
             <h2>{movieTitle}</h2>
             <ul>
                 {/* pass movie id to second movie API call in MovieApi component as props */}

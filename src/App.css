@@ -10,7 +10,7 @@ html { box-sizing: border-box;}
 
 html {
   font-size: 125%;
-  background-color: rgb(255, 254, 245);
+  background-color: rgb(4, 4, 29);
 }
 
 * {
@@ -18,7 +18,7 @@ html {
   text-align: center;
   font-size: 1rem;
   letter-spacing: 0.02rem;
-  color: #141640;
+  color: #ffffff;
 }
 h1 {
   font-family: 'Kanit', sans-serif;
@@ -26,8 +26,45 @@ h1 {
   color: #6b6eec;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
-  margin: 4rem 0 2rem;
+  margin: 4rem 0 3rem;
+  text-shadow: 0 0 0.2rem rgb(214, 193, 255), 0 0 0.8rem #6b6eec;
+  position: relative;
+  transition: flicker 1.5s infinite alternate;
 }
+
+h1::before {
+  content: '';
+  position: absolute;
+  background: #6b6eec;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: perspective(2rem) rotateX(40deg) scale(1, 0.35);
+  filter: blur(2em);
+  opacity: 0.7;
+  transition: opacity 0.1s linear;
+}
+
+/* @keyframes flicker {
+    
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+      text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #6b6eec
+      0 0 80px #6b6eec,
+      0 0 90px #6b6eec,
+      0 0 100px #6b6eec,
+      0 0 150px #6b6eec;
+  
+  }
+  
+  20%, 24%, 55% {        
+      text-shadow: none;
+  }    
+} */
 
 h2 {
   font-size: 1.4rem;
@@ -61,25 +98,82 @@ label {
   font-size: 1.2rem;
 }
 
+input {
+  padding: 0.5rem;
+  color: #000;
+  font-size: 1.5rem;
+}
+
 button {
   font-family: 'Lato', sans-serif;
+  font-size: 1.5rem;
   padding: 0.5rem;
   border: 3px solid #141640;
   background-color: white;
   cursor: pointer;
+  color: #8ef9f4;
 }
 
-ul {
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 0;
-  /* gap: 50px; */
+.neonButton {
+  color: #8ef9f4;
+  margin-bottom: 5rem;
+  display: inline-block;
+  border: solid 4px #8ef9f4;
+  padding: 1rem 0.5rem;
+  border-radius: 10px;
+  text-shadow: 0 0 0.125rem rgb(217, 252, 244), 0 0 0.25rem #85f8f2;
+  box-shadow: inset 0 0 1rem 0 #8ef9f4,
+  0 0 1rem 0 #8ef9f4;
+  position: relative;
+  transition: 0.1s linear;
+}
+
+/* .neonButton::before {
+  content: '';
+  position: absolute;
+  background: #8ef9f4;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: perspective(2rem) rotateX(40deg) scale(1, 0.35);
+  filter: blur(2em);
+  opacity: 0.7;
+  transition: opacity 0.1s linear;
+} */
+
+.neonButton:hover,
+.neonButton:focus {
+  background: #8ef9f4;
+  color: #141640;
+  text-shadow: none;
+}
+
+.neonButton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2rem 0.5rem #8ef9f4;
+  opacity: 0;
+  transition: opacity 0.1s linear;
+}
+
+.neonButton:hover::before,
+.neonButton:focus::before {
+  opacity: 1;
+}
+
+.neonButton:hover::after,
+.neonButton:focus::after {
+  opacity: 1;
 }
 
 ul li {
   list-style: none;
   width: calc((100% / 3) - 0.2rem);
-  /* flex: 1 0 calc((100% / 3) - 50px); */
   padding: 1rem;
   border: solid 3px #6b6eec;
   display: flex;
@@ -89,10 +183,16 @@ ul li {
 
 img {
   max-width: 100%;
-  /* object-fit: cover; */
+  object-fit: cover;
   display: block;
-  height: 300px;
+  height: 100%;
   cursor: pointer;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
 }
 
 ul button {
@@ -103,6 +203,8 @@ footer {
   margin-top: 5rem;
 }
 
+/* Media Queries to make de website responsive */
+
 @media(max-width: 768px) {
   ul {
     flex-direction: column;
@@ -110,4 +212,4 @@ footer {
   ul li {
     width: 100%;
   }
-}
+} 
