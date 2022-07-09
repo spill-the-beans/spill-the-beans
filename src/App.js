@@ -7,7 +7,7 @@ import SavedGifs from './SavedGifs';
 
 function App() {
   return (
-    <>
+    <div className='wrapper'>
       <Header />
       
       <Routes>
@@ -16,7 +16,7 @@ function App() {
       </Routes>
       
       <Footer />
-    </>
+    </div>
   );
 }
 

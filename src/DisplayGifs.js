@@ -3,7 +3,6 @@ import firebase from "./firebase";
 import { getDatabase, push, ref } from 'firebase/database';
 
 const DisplayGifs = (props) => {
-    console.log(props.gifs);
     // randomize the list of gif (array) index number
     const [randomIndex, setRandomIndex] = useState(0);
 
@@ -14,6 +13,7 @@ const DisplayGifs = (props) => {
         setRandomIndex(Math.floor(Math.random() * props.gifs.length));
     }
 
+    // onClick event, user can push and save the displayed gif into firebase
     const handleSave = (savedId, savedMovie, savedGifs) => {
 
         const database = getDatabase(firebase);
@@ -24,7 +24,6 @@ const DisplayGifs = (props) => {
             'title': savedMovie,
             'img': savedGifs
         }
-
         push(dbRef, gifObject);
     }
 
@@ -39,7 +38,7 @@ const DisplayGifs = (props) => {
                         <li key={props.gifs[randomIndex].id}>
                             <button
                                 onClick={() => handleSave(props.gifs[randomIndex].id, props.movieTitle, props.gifs[randomIndex].images.original.url)}
-                            >✔️</button>
+                            >Keep it!</button>
 
                             <img onClick={handleClick} src={props.gifs[randomIndex].images.original.url} alt={props.gifs[randomIndex].title} />
                         </li>
