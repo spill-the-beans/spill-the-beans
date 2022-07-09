@@ -6,13 +6,31 @@ import { Link } from "react-router-dom";
 const SavedGifs = () => {
 
     const [savedGifs, setSavedGifs] = useState([]);
-    const [gifSlice, setGifSlice] = useState([]);
+    // const [gifSlice, setGifSlice] = useState([]);
+    const [groupGif, setGroupGif] = useState({})
 
     useEffect(() => {
-        setGifSlice(savedGifs.slice(0).reverse());
+        // setGifSlice(savedGifs.slice(0).reverse());
+        // setGroupGif(savedGifs.reduce((groupedGif, gif) => {
+            // const title = gif.title
+            // if (groupedGif[title] == null) groupedGif[title] = []
+            // groupedGif[title].push(gif)
+        //     return groupedGif
+        const groupList = savedGifs.reduce((groupedGif, gif) => {
+            // groupedGif[gif.title] = (groupedGif[gif.title] || []).concat(gif)
+            const title = gif.title
+            if (groupedGif[title] == null) groupedGif[title] = []
+            groupedGif[title].push(gif)
+            return groupedGif
+        }, {})
+        setGroupGif(groupList);
 
     }, [savedGifs])
-
+    
+    const newArray = Object.values(groupGif);
+    
+    const sortedGifs = newArray.flat();
+    
     useEffect(() => {
 
         const database = getDatabase(firebase);
@@ -48,7 +66,7 @@ const SavedGifs = () => {
         <Link to="/"><button>Go BACK to HOEMPAGE</button></Link>
         <ul className="savedGifsContainer">
 
-            {gifSlice.map((savedGif) => {
+            {sortedGifs.map((savedGif) => {
                 console.log(savedGif);
                 return (
                     <li key={savedGif.key}>
