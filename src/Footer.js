@@ -1,7 +1,7 @@
 const Footer = () => {
-    return(
+    return (
         <footer>
-            <p>Created by beans🫘 at Juno College</p>
+            <p>Created by beans at Juno College</p>
         </footer>
     )
 }
