@@ -6,6 +6,8 @@ html { box-sizing: border-box;}
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
+
+
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Lato&display=swap');
 
 
@@ -265,6 +267,8 @@ footer {
 /* Media Queries to make de website responsive */
 
 @media(max-width: 768px) {
+
+
   ul {
     flex-direction: column;
   }
@@ -272,3 +276,10 @@ footer {
     width: 100%;
   }
 } 
+
+@media (max-width: 480px) {
+  html, body {
+    overflow-x: hidden;
+  }
+
+}

@@ -40,9 +40,9 @@ const DisplayGifs = (props) => {
                             <button
                                 onClick={() => handleSave(props.gifs[randomIndex].id, props.movieTitle, props.gifs[randomIndex].images.original.url, props.movieKeyword)}
                             >Keep it!</button>
-                            <div className="gifContainer">
+                            <div className="gifContainer" onClick={handleClick}>
                                 <p>Click me!</p>
-                                <img onClick={handleClick} src={props.gifs[randomIndex].images.original.url} alt={props.gifs[randomIndex].title} />
+                                <img  src={props.gifs[randomIndex].images.original.url} alt={props.gifs[randomIndex].title} />
                             </div>
                                 <h4>{props.movieKeyword}</h4>
                         </li>
