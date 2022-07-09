@@ -23,7 +23,7 @@ const GiphyApi = (props) => {
 
     return (
         <>
-            <DisplayGifs gifs={gifs} movieTitle={props.movieTitle} />
+            <DisplayGifs gifs={gifs} movieTitle={props.movieTitle} movieKeyword={props.keyword}/>
         </>
     )
 }

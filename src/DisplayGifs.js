@@ -43,6 +43,7 @@ const DisplayGifs = (props) => {
                                 <p>Click me!</p>
                                 <img onClick={handleClick} src={props.gifs[randomIndex].images.original.url} alt={props.gifs[randomIndex].title} />
                             </div>
+                                <h4>{props.movieKeyword}</h4>
                         </li>
                     </>
             }

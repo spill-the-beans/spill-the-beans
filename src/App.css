@@ -189,7 +189,7 @@ ul li {
   margin: 1rem 0.1rem;
 }
 
-p {
+.gifContainer p {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -217,7 +217,10 @@ img {
 
 img:hover,
 img:focus {
-  scale: 1.07;
+  -webkit-transform: scale(1.07);
+  -moz-transform: scale(1.07);
+  -o-transform: scale(1.07);
+  transform: scale(1.07);
   opacity: 0.3;
 }
 
@@ -243,12 +246,21 @@ ul button {
   cursor: default;
 }
 
+h4 {
+  
+  margin-top: 0.5rem;
+  display: block;
+  padding: 0.8rem 0;
+  text-transform: uppercase;
+}
+
 /* Footer styles */
 
 footer {
   margin: 0;
   color: #fff;
 }
+
 
 /* Media Queries to make de website responsive */
 
