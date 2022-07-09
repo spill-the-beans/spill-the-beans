@@ -69,9 +69,17 @@ button {
   cursor: pointer;
 }
 
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  /* gap: 50px; */
+}
+
 ul li {
   list-style: none;
   width: calc((100% / 3) - 0.2rem);
+  /* flex: 1 0 calc((100% / 3) - 50px); */
   padding: 1rem;
   border: solid 3px #6b6eec;
   display: flex;
@@ -81,16 +89,10 @@ ul li {
 
 img {
   max-width: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
   display: block;
-  height: 100%;
+  height: 300px;
   cursor: pointer;
-}
-
-ul {
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 0;
 }
 
 ul button {
