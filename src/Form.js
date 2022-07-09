@@ -49,10 +49,10 @@ const Form = () => {
                         onChange={handleInputChange}
                         value={userInput}
                     />
-                    <button>Spill it</button>
+                    <button className='neonButton'>Spill it</button>
                 </form>
             </div>
-            <Link to="/savedgifs">                          <button>Show my saved spoilers</button>
+            <Link to="/savedgifs">                          <button className='neonButton'>Show my saved spoilers</button>
             </Link>
 
             <h2>{movieTitle}</h2>
