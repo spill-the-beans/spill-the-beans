@@ -2,6 +2,7 @@ import MovieApi from './MovieApi';
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Form = () => {
 
@@ -12,6 +13,12 @@ const Form = () => {
     const [movieId, setMovieId] = useState('');
 
     const [movieTitle, setMovieTitle] = useState('');
+
+    const [movieList, setMovieList] = useState([])
+
+    // useEffect( () => {
+    //     setMovieList(res.data.results.map(() => {}))
+    // } )
 
     // take the value of user's input and update state upon onChange
     const handleInputChange = (event) => {
@@ -28,15 +35,21 @@ const Form = () => {
                 query: userInput
             }
         }).then((res) => {
-            setMovieId(res.data.results[0].id);
-            setMovieTitle(res.data.results[0].title)
+            console.log(res.data.results);
+            // setMovieId(res.data.results[0].id);
+            // setMovieTitle(res.data.results[0].title)
+            setMovieList(res.data.results);
         })
         // reset the state of userInput and movieID to an empty string
         setUserInput('');
-        setMovieId('');
-        setMovieTitle('');
+        // setMovieId('');
+        // setMovieTitle('');
     }
-
+    console.log(movieList);
+    const handleSelect = (movieId, movieTitle) => {
+        setMovieId(movieId)
+        setMovieTitle(movieTitle)
+    }
     return (
         <main>
             <div className="formFlex">
@@ -53,7 +66,13 @@ const Form = () => {
                 </form>
             </div>
             <Link to="/savedgifs"><button className="buttonTwo">Show my saved spoilers</button></Link>
-
+            {
+                movieList.map((movie) => {
+                    return (
+                        <p onClick={()=>handleSelect(movie.id, movie.title)}>{movie.title}</p>
+                    )
+                })
+            }
             <h2 id="gifList">{movieTitle}</h2>
             <ul>
                 {/* pass movie id to second movie API call in MovieApi component as props */}

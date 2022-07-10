@@ -1,31 +1,36 @@
 import { useState } from "react";
 import firebase from "./firebase";
-import { getDatabase, push, ref } from 'firebase/database';
+import { getDatabase, push, update, ref } from 'firebase/database';
 
 const DisplayGifs = (props) => {
+    
     // randomize the list of gif (array) index number
-    const [randomIndex, setRandomIndex] = useState(0);
-
+    const [randomIndex, setRandomIndex] = useState(()=>Math.floor(Math.random() * 50));
     // const [savedGifs, setSavedGifs] = useState([]);
-
+    
     // onClick event, we want to return new random index number
     const handleClick = () => {
         setRandomIndex(Math.floor(Math.random() * props.gifs.length));
     }
 
     // onClick event, user can push and save the displayed gif into firebase
-    const handleSave = (savedId, savedMovie, savedGifs, savedKeyword) => {
+    const handleSave = (savedMovie, savedId, savedGifs, savedKeyword) => {
 
         const database = getDatabase(firebase);
         const dbRef = ref(database);
 
+        // let title = savedMovie;
         const gifObject = {
-            'key': savedId,
+            'movie': {
             'title': savedMovie,
+            'description': {
+            'key': savedId,
             'img': savedGifs,
             'keyword': savedKeyword
+            }
         }
-        push(dbRef, gifObject);
+        }
+        update(dbRef, gifObject);
     }
 
     return (
@@ -38,7 +43,7 @@ const DisplayGifs = (props) => {
                     <>
                         <li key={props.gifs[randomIndex].id}>
                             <button
-                                onClick={() => handleSave(props.gifs[randomIndex].id, props.movieTitle, props.gifs[randomIndex].images.original.url, props.movieKeyword)}
+                                onClick={() => handleSave(props.movieTitle, props.gifs[randomIndex].id, props.gifs[randomIndex].images.original.url, props.movieKeyword)}
                             >Keep it!</button>
                             <div className="gifContainer" onClick={handleClick}>
                                 <p>Click me!</p>
