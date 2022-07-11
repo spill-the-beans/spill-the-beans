@@ -12,7 +12,8 @@ const DisplayGifs = (props) => {
     const handleClick = () => {
         setRandomIndex(Math.floor(Math.random() * props.gifs.length));
     }
-
+    // const [select, setSelect] = useState(props.select);
+    // setSelect(!props.select);
     // onClick event, user can push and save the displayed gif into firebase
     const handleSave = (savedMovie, savedId, savedGifs, savedKeyword) => {
 
@@ -31,11 +32,13 @@ const DisplayGifs = (props) => {
         }
         }
         update(dbRef, gifObject);
+        
     }
 
     return (
         <>
             {
+
                 props.gifs.length === 0
                     ?
                     <p>no data</p>

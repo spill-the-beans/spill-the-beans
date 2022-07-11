@@ -5,6 +5,8 @@ import Form from './Form';
 import { Routes, Route } from 'react-router-dom';
 import SavedGifs from './SavedGifs';
 import ErrorPage from './ErrorPage';
+import DisplayGifs from './DisplayGifs';
+import MovieApi from './MovieApi';
 
 function App() {
   return (
@@ -12,8 +14,10 @@ function App() {
       <Header />
       
       <Routes>
-        <Route path="/" element={<Form />}/>
-        <Route path="/savedgifs" element={<SavedGifs />} />
+        <Route path="/" element={<Form />}>
+        </Route>
+          {/* <Route path="/gifsList" element={<MovieApi/>}/> */}
+        <Route path="/saved" element={<SavedGifs />} />
         <Route path="*" element={<ErrorPage/>}/>
       </Routes>
 

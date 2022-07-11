@@ -1,8 +1,9 @@
 import MovieApi from './MovieApi';
 import { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { useEffect } from 'react';
+import SelectMovie from './SelectMovie';
 
 const Form = () => {
 
@@ -10,9 +11,9 @@ const Form = () => {
     const [userInput, setUserInput] = useState('');
 
     // initialize state for movie ID of searched movie with user's input
-    const [movieId, setMovieId] = useState('');
+    // const [movieId, setMovieId] = useState('');
 
-    const [movieTitle, setMovieTitle] = useState('');
+    // const [movieTitle, setMovieTitle] = useState('');
 
     const [movieList, setMovieList] = useState([])
 
@@ -24,9 +25,10 @@ const Form = () => {
     const handleInputChange = (event) => {
         setUserInput(event.target.value);
     }
-
+    // const [select, setSelect] = useState(false);
+    
     // run API call on onSubmit event with user's input movie title and returns its id and update state of movieId
-    const handleSubmit = (event) => {
+    const handleSubmit = (event, userInput) => {
         event.preventDefault();
         axios({
             url: `https://api.themoviedb.org/3/search/movie?`,
@@ -42,18 +44,23 @@ const Form = () => {
         })
         // reset the state of userInput and movieID to an empty string
         setUserInput('');
+        
         // setMovieId('');
         // setMovieTitle('');
+        
     }
+    // const handleSelect = () => {
+    //     setSelect(!select);
+    // }
     console.log(movieList);
-    const handleSelect = (movieId, movieTitle) => {
-        setMovieId(movieId)
-        setMovieTitle(movieTitle)
-    }
+    // const handleSelect = (movieId, movieTitle) => {
+    //     setMovieId(movieId)
+    //     setMovieTitle(movieTitle)
+    // }
     return (
         <main>
             <div className="formFlex">
-                <form action="submit" onSubmit={handleSubmit}>
+                <form action="submit" onSubmit={()=>handleSubmit(userInput)}>
                     <label htmlFor="newMovie">Which movie do you want us to spill the beans on?</label>
                     <input
                         required
@@ -62,22 +69,25 @@ const Form = () => {
                         onChange={handleInputChange}
                         value={userInput}
                     />
-                    <a href="./index.html #gifList"><button>Spill it</button></a>
+                    <button>Spill it</button>
                 </form>
             </div>
-            <Link to="/savedgifs"><button className="buttonTwo">Show my saved spoilers</button></Link>
-            {
+            <Link to="/saved"><button className="buttonTwo">Show my saved spoilers</button></Link>
+
+            {/* <SelectMovie movieList={movieList} select={select} /> */}
+            {/* {
                 movieList.map((movie) => {
                     return (
                         <p onClick={()=>handleSelect(movie.id, movie.title)}>{movie.title}</p>
                     )
                 })
-            }
-            <h2 id="gifList">{movieTitle}</h2>
-            <ul>
+            } */}
+            {/* <h2 id="gifList">{movieTitle}</h2>
+            <ul> */}
                 {/* pass movie id to second movie API call in MovieApi component as props */}
-                <MovieApi movieId={movieId} movieTitle={movieTitle} />
-            </ul>
+                {/* <MovieApi movieId={movieId} movieTitle={movieTitle} /> */}
+            {/* </ul> */}
+            <Outlet />
         </main >
     )
 }
