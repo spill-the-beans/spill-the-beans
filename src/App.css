@@ -233,6 +233,10 @@ ul li {
     margin-bottom: 1rem;
 }
 
+.gifsList h4 {
+    text-transform: uppercase;
+}
+
 .gifContainer {
     height: 300px;
     width: 100%;
@@ -301,7 +305,7 @@ ul li {
 /* Footer styles */
 
 footer {
-    margin: 0;
+    margin-top: 3rem;
     color: #fff;
 }
 

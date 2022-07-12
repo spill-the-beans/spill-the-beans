@@ -7,12 +7,22 @@ const SavedGifs = () => {
 
     // initialize state saved gifs from firebase
     const [savedGifs, setSavedGifs] = useState([]);
-    const [gifSlice, setGifSlice] = useState([]);
+    const [groupGif, setGroupGif] = useState({});
 
     // setting the order of saved gifs
     useEffect(() => {
-        setGifSlice(savedGifs.slice(0).reverse());
+        const groupList = savedGifs.reduce((groupedGif, gif) => {
+        const title = gif.title
+        if (groupedGif[title] == null) groupedGif[title] = []
+            groupedGif[title].push(gif)
+            return groupedGif
+        }, {})
+    setGroupGif(groupList);
     }, [savedGifs])
+
+    const newArray = Object.values(groupGif);
+    
+    const sortedGifs = newArray.flat();
 
     useEffect(() => {
         const database = getDatabase(firebase);
@@ -49,7 +59,7 @@ const SavedGifs = () => {
 
             <ul className="savedGifsContainer">
                 {
-                    gifSlice.map((savedGif) => {
+                    sortedGifs.map((savedGif) => {
                         return (
                             <li key={savedGif.key}>
                                 <button className="remove" onClick={ () => handleRemove(savedGif.key) }>❌</button>
