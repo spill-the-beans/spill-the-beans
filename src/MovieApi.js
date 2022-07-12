@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import GiphyApi from "./GiphyApi";
-
+import { Link } from "react-router-dom";
 const MovieApi = (props) => {
 
     // initialize state for movie keyword of passed movie ID from Form component
@@ -32,12 +32,36 @@ const MovieApi = (props) => {
     }, [movieKeyword])
 
     return (
-        //  pass randomly selected 3 keywords to GiphyApi component
-            selectedKeyword.map((keyword) => {
-            return (
-                <GiphyApi key={keyword.id} keyword={keyword.name} movieTitle={props.movieTitle}/>
-            )
-        })
+        <>
+        <Link to="/"><button>Would you like to search another movie?</button></Link>
+        <Link to="/saved"><button className="buttonTwo">Show my saved spoilers</button></Link>
+        {
+            movieKeyword.length === 0
+            ?
+            <>
+            <h3>Nothing found under</h3>
+            <h2>{props.movieTitle}</h2>
+            <p>please try another one</p>
+            </>
+            :
+            <>
+            <h2>{props.movieTitle}</h2>
+            <ul>
+                
+        {/* pass randomly selected 3 keywords to GiphyApi component */}
+            {
+                
+                selectedKeyword.map((keyword) => {
+                    return (
+                        <GiphyApi key={keyword.id} keyword={keyword.name} movieTitle={props.movieTitle}/>
+                        )
+                    })
+                }
+                </ul>
+                </>
+        }
+        
+        </>
     )
 }
 
