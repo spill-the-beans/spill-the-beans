@@ -1,3 +1,4 @@
+
 import './App.css';
 
 import Header from './Header';
@@ -12,7 +13,7 @@ import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 
 function App() {
-    
+
     // initialize state of user's input of movie title
     const [userInput, setUserInput] = useState('');
     // initialize state for searched movie list from user's input
@@ -72,6 +73,7 @@ return (
     </Routes>
     
     <Footer />
+
     </div>
 );
 }
