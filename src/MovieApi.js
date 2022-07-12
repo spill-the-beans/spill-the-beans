@@ -1,3 +1,4 @@
+import NothingFound from "./NothingFound";
 import GiphyApi from "./GiphyApi";
 
 import { useState, useEffect } from "react";
@@ -41,7 +42,7 @@ const MovieApi = (props) => {
                 movieKeyword.length === 0
                 ?
                 <>
-                    <h3>Nothing found! Please try another one</h3>
+                    <NothingFound />
                 </>
                 :
                 <>
