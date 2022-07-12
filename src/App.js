@@ -44,10 +44,15 @@ function App() {
 
     // onClick event, which returns movie title and its id of selected movie and update states
     const handleSelect = (movieId, movieTitle) => {
-            setMovieId(movieId)
-            setMovieTitle(movieTitle)
-            // reset the state of movie list to an empty array
-            setMovieList([]);
+        setMovieId(movieId)
+        setMovieTitle(movieTitle)
+        // reset the state of movie list to an empty array
+        setMovieList([]);
+    }
+
+    // onClick event, reset the state of movie list to an empty array
+    const handleClick = () => {
+        setMovieList([]);
     }
 
 return (
@@ -55,7 +60,7 @@ return (
     <Header />
     
     <Routes>
-        <Route path="/" element={<Form handleInputChange={handleInputChange} handleSubmit={handleSubmit} userInput={userInput} handleSelect={handleSelect} movieList={movieList} />} />
+        <Route path="/" element={<Form handleInputChange={handleInputChange} handleSubmit={handleSubmit} userInput={userInput} handleSelect={handleSelect} movieList={movieList} handleClick={handleClick}/>} />
         <Route path="/gifsList" element={<MovieApi movieId={movieId} movieTitle={movieTitle} />} />
         <Route path="/saved" element={<SavedGifs />} />
         <Route path="*" element={<ErrorPage />} />

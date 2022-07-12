@@ -44,7 +44,7 @@ const SavedGifs = () => {
     }
 
     return (
-        <>
+        <main>
             <Link to="/"><button>Go BACK to HOMEPAGE</button></Link>
 
             <ul className="savedGifsContainer">
@@ -61,7 +61,7 @@ const SavedGifs = () => {
                     })
                 }
             </ul>
-        </>
+        </main>
     )
 }
 

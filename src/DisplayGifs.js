@@ -37,16 +37,8 @@ const DisplayGifs = (props) => {
         <>
             {
                 // If searched keyword does NOT have any gifs, return following message
-                props.gifs.length === 0
-                ?
-                <li>
-                    {/* <button onClick={ () => handleSave(props.movieTitle, props.gifs[randomIndex].id, props.gifs[randomIndex].images.original.url, props.movieKeyword) }>Keep it!</button> */}
-                    <div className="gifContainer">
-                        <h4>No Images found</h4>
-                    </div>
-                    <h4>{props.movieKeyword}</h4>
-                </li>
-                :
+                props.gifs.length !== 0
+                ? 
                 <>
                     <li key={props.gifs[randomIndex].id}>
                         <button onClick={ () => handleSave(props.movieTitle, props.gifs[randomIndex].id, props.gifs[randomIndex].images.original.url, props.movieKeyword) }>Keep it!</button>
@@ -57,6 +49,7 @@ const DisplayGifs = (props) => {
                         <h4>{props.movieKeyword}</h4>
                     </li>
                 </>
+                : null
             }
         </>
     )

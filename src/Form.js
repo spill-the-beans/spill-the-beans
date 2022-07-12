@@ -16,10 +16,11 @@ const Form = (props) => {
                     />
                     <button>Spill it</button>
                 </form>
+                
+                <Link to="/saved"><button onClick={()=>props.handleClick()}className="buttonTwo">Show my saved spoilers</button></Link>
             </div>
-            <Link to="/saved"><button className="buttonTwo">Show my saved spoilers</button></Link>
             
-            <ul>
+            <ul className='movieList'>
             {
                 props.movieList.map((movie) => {
                     return (

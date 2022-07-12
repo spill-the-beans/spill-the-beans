@@ -34,8 +34,8 @@ const MovieApi = (props) => {
     }, [movieKeyword])
 
     return (
-        <>
-            <Link to="/"><button>Would you like to search another movie?</button></Link>
+        <main>
+            <Link to="/"><button className="buttonTwo">Would you like to search another movie?</button></Link>
             <Link to="/saved"><button className="buttonTwo">Show my saved spoilers</button></Link>
             {   
                 // If selected movie does NOT have any keywords, return following message
@@ -49,7 +49,7 @@ const MovieApi = (props) => {
                 {/* pass randomly selected 3 keywords to GiphyApi component */}
                     <h2>{props.movieTitle}</h2>
                     <p>is about</p>
-                    <ul>
+                    <ul className="gifsList">
                     {
                         selectedKeyword.map((keyword) => {
                             return (
@@ -60,7 +60,7 @@ const MovieApi = (props) => {
                     </ul>
                 </>
             }
-        </>
+        </main>
     )
 }
 
