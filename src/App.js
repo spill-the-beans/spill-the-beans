@@ -1,37 +1,32 @@
 import './App.css';
+
 import Header from './Header';
 import Footer from './Footer';
 import Form from './Form';
-import { Routes, Route } from 'react-router-dom';
+import MovieApi from './MovieApi';
 import SavedGifs from './SavedGifs';
 import ErrorPage from './ErrorPage';
-import DisplayGifs from './DisplayGifs';
-import MovieApi from './MovieApi';
+
 import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
-import SelectMovie from './SelectMovie';
 
 function App() {
-  const [userInput, setUserInput] = useState('');
-
-    // initialize state for movie ID of searched movie with user's input
-    // const [movieId, setMovieId] = useState('');
-
-    // const [movieTitle, setMovieTitle] = useState('');
-
+    
+    // initialize state of user's input of movie title
+    const [userInput, setUserInput] = useState('');
+    // initialize state for searched movie list from user's input
     const [movieList, setMovieList] = useState([])
-
-    // useEffect( () => {
-    //     setMovieList(res.data.results.map(() => {}))
-    // } )
+    // initialize state for movie ID and title of selected movie from movie list
+    const [movieId, setMovieId] = useState('');
+    const [movieTitle, setMovieTitle] = useState('');
 
     // take the value of user's input and update state upon onChange
-    const handleInputChange = (event, input) => {
+    const handleInputChange = (event) => {
         setUserInput(event.target.value);
     }
-    // const [select, setSelect] = useState(false);
     
-    // run API call on onSubmit event with user's input movie title and returns its id and update state of movieId
+    // run API call on onSubmit event with user's input of movie title and returns the list of movies and update its state
     const handleSubmit = (event, userInput) => {
         event.preventDefault();
         axios({
@@ -41,66 +36,34 @@ function App() {
                 query: userInput
             }
         }).then((res) => {
-            console.log(res.data.results);
-            // setMovieId(res.data.results[0].id);
-            // setMovieTitle(res.data.results[0].title)
             setMovieList(res.data.results);
         })
-        // reset the state of userInput and movieID to an empty string
+        // reset the state of userInput to an empty string
         setUserInput('');
-        
-        // setMovieId('');
-        // setMovieTitle('');
-        
     }
-    console.log(movieList);
-    // const handleSelect = () => {
-    //     setSelect(!select);
-    // }
-    // console.log(movieList);
-    const [movieId, setMovieId] = useState('');
 
-    const [movieTitle, setMovieTitle] = useState('');
-
-    // const [select, setSelect] = useState(false);
-    
-
-    // const selectTransformer = () => {
-    //     setSelect(false);
-    // }
-
+    // onClick event, which returns movie title and its id of selected movie and update states
     const handleSelect = (movieId, movieTitle) => {
             setMovieId(movieId)
             setMovieTitle(movieTitle)
-            // window.scrollBy({ top: 1000, behavior: "smooth" })
-            // selectTransformer();
-            // if (!select) {
-            //     setSelect(!select);
-
-            // } else {
-            //     setSelect(select);
-            // }
-            // setSelect(!select);
-            console.log(movieId);
-            console.log(movieTitle);
+            // reset the state of movie list to an empty array
             setMovieList([]);
     }
-  return (
+
+return (
     <div className='wrapper'>
-      <Header />
-      
-      <Routes>
-        <Route path="/" element={<Form handleInputChange={handleInputChange} handleSubmit={handleSubmit} userInput={userInput} handleSelect={handleSelect} movieList={movieList}/>}>
-        </Route>
-        {/* <Route path="/movieList" element={<SelectMovie movieList={movieList}/>} /> */}
-        <Route path="/gifsList" element={<MovieApi movieId={movieId} movieTitle={movieTitle}/>}/>
+    <Header />
+    
+    <Routes>
+        <Route path="/" element={<Form handleInputChange={handleInputChange} handleSubmit={handleSubmit} userInput={userInput} handleSelect={handleSelect} movieList={movieList} />} />
+        <Route path="/gifsList" element={<MovieApi movieId={movieId} movieTitle={movieTitle} />} />
         <Route path="/saved" element={<SavedGifs />} />
-        <Route path="*" element={<ErrorPage/>}/>
-      </Routes>
-      {/* <SelectMovie movieList={movieList}/> */}
-      <Footer />
+        <Route path="*" element={<ErrorPage />} />
+    </Routes>
+    
+    <Footer />
     </div>
-  );
+);
 }
 
 export default App;

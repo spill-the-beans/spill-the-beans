@@ -6,14 +6,12 @@ const DisplayGifs = (props) => {
     
     // randomize the list of gif (array) index number
     const [randomIndex, setRandomIndex] = useState(()=>Math.floor(Math.random() * 50));
-    // const [savedGifs, setSavedGifs] = useState([]);
     
     // onClick event, we want to return new random index number
     const handleClick = () => {
         setRandomIndex(Math.floor(Math.random() * props.gifs.length));
     }
-    // const [select, setSelect] = useState(props.select);
-    // setSelect(!props.select);
+
     // onClick event, user can push and save the displayed gif into firebase
     const handleSave = (savedMovie, savedId, savedGifs, savedKeyword) => {
 
@@ -38,23 +36,27 @@ const DisplayGifs = (props) => {
     return (
         <>
             {
-
+                // If searched keyword does NOT have any gifs, return following message
                 props.gifs.length === 0
-                    ?
-                    <p>no data</p>
-                    :
-                    <>
-                        <li key={props.gifs[randomIndex].id}>
-                            <button
-                                onClick={() => handleSave(props.movieTitle, props.gifs[randomIndex].id, props.gifs[randomIndex].images.original.url, props.movieKeyword)}
-                            >Keep it!</button>
-                            <div className="gifContainer" onClick={handleClick}>
-                                <p>Click me!</p>
-                                <img  src={props.gifs[randomIndex].images.original.url} alt={props.gifs[randomIndex].title} />
-                            </div>
-                                <h4>{props.movieKeyword}</h4>
-                        </li>
-                    </>
+                ?
+                <li>
+                    {/* <button onClick={ () => handleSave(props.movieTitle, props.gifs[randomIndex].id, props.gifs[randomIndex].images.original.url, props.movieKeyword) }>Keep it!</button> */}
+                    <div className="gifContainer">
+                        <h4>No Images found</h4>
+                    </div>
+                    <h4>{props.movieKeyword}</h4>
+                </li>
+                :
+                <>
+                    <li key={props.gifs[randomIndex].id}>
+                        <button onClick={ () => handleSave(props.movieTitle, props.gifs[randomIndex].id, props.gifs[randomIndex].images.original.url, props.movieKeyword) }>Keep it!</button>
+                        <div className="gifContainer" onClick={handleClick}>
+                            <p>Click me!</p>
+                            <img src={props.gifs[randomIndex].images.original.url} alt={props.gifs[randomIndex].title} />
+                        </div>
+                        <h4>{props.movieKeyword}</h4>
+                    </li>
+                </>
             }
         </>
     )

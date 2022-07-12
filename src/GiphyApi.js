@@ -1,6 +1,7 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import DisplayGifs from "./DisplayGifs";
+
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const GiphyApi = (props) => {
 
@@ -18,11 +19,11 @@ const GiphyApi = (props) => {
         }).then((res) => {
             setGifs(res.data.data);
         })
-
     }, [props.keyword])
 
     return (
         <>
+        {/* pass the list of gifs, movie title and keyword to DisplayGifs */}
             <DisplayGifs gifs={gifs} movieTitle={props.movieTitle} movieKeyword={props.keyword}/>
         </>
     )
