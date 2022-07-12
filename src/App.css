@@ -292,6 +292,14 @@ ul li {
     text-transform: uppercase;
 }
 
+/* NothingFound styles */
+
+.nothingFound h3 {
+    font-size: 1.5rem;
+    color: #8ef9f4;
+    text-shadow: 0 0 0.5rem rgb(162, 118, 250), 0 0 0.5rem #9495f5;
+}
+
 /* Footer styles */
 
 footer {

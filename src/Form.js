@@ -24,8 +24,8 @@ const Form = (props) => {
             {
                 props.movieList.map((movie) => {
                     return (
-                        <Link to="/gifsList">
-                            <li onClick={()=>props.handleSelect(movie.id, movie.title)} key={movie.id}>{movie.title}</li>
+                        <Link to="/gifsList" key={movie.id}>
+                            <li onClick={()=>props.handleSelect(movie.id, movie.title)}>{movie.title}</li>
                         </Link>
                     )
                 })
