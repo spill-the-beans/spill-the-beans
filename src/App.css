@@ -264,7 +264,23 @@ footer {
   color: #fff;
 }
 
+footer h3,
+a {
+  letter-spacing: 0.2rem;
+}
 
+footer a {
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+}
+
+footer a:hover,
+footer a:focus {
+  cursor: pointer;
+  color: #8ef9f4;
+  scale: 1.06;
+}
 /* Media Queries to make de website responsive */
 
 @media(max-width: 768px) {
