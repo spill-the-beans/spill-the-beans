@@ -277,7 +277,6 @@ ul li {
 }
 
 .savedGifsContainer li {
-    max-width: calc((100% / 3) - 1rem);
     height: 600px;
 }
 
