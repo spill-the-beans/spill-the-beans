@@ -48,7 +48,6 @@ const MovieApi = (props) => {
                 <>
                 {/* pass randomly selected 3 keywords to GiphyApi component */}
                     <h2>{props.movieTitle}</h2>
-                    <p>is about</p>
                     <ul className="gifsList">
                     {
                         selectedKeyword.map((keyword) => {

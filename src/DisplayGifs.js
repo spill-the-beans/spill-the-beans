@@ -1,6 +1,6 @@
 import { useState } from "react";
 import firebase from "./firebase";
-import { getDatabase, push, update, ref } from 'firebase/database';
+import { getDatabase, push, ref } from 'firebase/database';
 
 const DisplayGifs = (props) => {
     
@@ -18,18 +18,6 @@ const DisplayGifs = (props) => {
         const database = getDatabase(firebase);
         const dbRef = ref(database);
 
-        // let title = savedMovie;
-        // const gifObject = {
-        //     'movie': {
-        //     'title': savedMovie,
-        //     'description': {
-        //     'key': savedId,
-        //     'img': savedGifs,
-        //     'keyword': savedKeyword
-        //     }
-        // }
-        // }
-        // update(dbRef, gifObject);
         const gifObject = {
             'key': savedId,
             'title': savedMovie,

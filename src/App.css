@@ -105,8 +105,6 @@ h1::before {
 
 h2 {
     font-size: 2rem;
-    /* margin-top: 3rem; */
-    /* text-transform: uppercase; */
     color: #8ef9f4;
     text-shadow: 0 0 0.5rem rgb(162, 118, 250), 0 0 0.5rem #9495f5;
 }

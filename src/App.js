@@ -80,27 +80,19 @@ export default App;
 
 // Pseudo-code
 // 1. Form component
-// 	- retrieve and pass your input (movie title) to movie API and return the data
-// 		: useState: const [userInput, setUserInput] = useState([])
-// 		: Using axios, we retrieve ‘movie-keyword’ data from movieDB API
-// 			useEffect ( () => {
-// 							axios({
-// 								url:
-// 								params: {
-// 										api_key:
-// 										}
-// 								}).then(res) => {
-// 								setUserInput(res);
-// 								}};
-// 					}, []);
-// 	- pass the data-set with movie_ID to MovieApi component as props
+// 	- retrieve and pass your input (movie title) to first movie API and return the data
+//  - pass the data to display list of movies
+//  - once selected, pass movie_ID and its title to MovieApi component as props
 // 2. MovieApi component
-// 	- receive the movie_ID from ‘Form’ and run axios to retrieve movie_keywords
+// 	- receive the movie_ID & movie_title from ‘APP’ and run second axios to retrieve movie_keywords
 // 	- Pass the keywords from movieDB as props to GiphyApi component
 // 3. GiphyApi component
 // 	- receive the keywords data-set from MovieApi component and run axios to search images (GIF)
-// 		: we only want to display 3 keywords so we might want to use loop
 // 	- pass GIF (image info) to Display component as props
 // 4. Display component
 // 	- receive image info from GiphyApi as props and return in <li>
-// 		: as a stretch goal, we can add ‘click - eventListener’ to display next index GIF once clicked
+//  - by using randomizer function, we only display images of 3 random keywords
+//  - we pass the saved data to firebase
+// 5. Saved component
+//  - retreive the data from firebase and display the saved gifs
+//  - function/button to remove the selected saved gifs from the firebase
