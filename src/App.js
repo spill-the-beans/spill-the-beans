@@ -36,8 +36,13 @@ function App() {
                 query: userInput
             }
         }).then((res) => {
-            setMovieList(res.data.results);
-        })
+        // if users input incorrect movie title, provide them with an alert
+            if (res.data.results.length === 0) {
+                alert (`Oh no! You've inputted the incorrect Movie Title. Please try again!`);
+            } else {
+                setMovieList(res.data.results);
+            }
+        });
         // reset the state of userInput to an empty string
         setUserInput('');
     }
@@ -72,7 +77,6 @@ return (
 }
 
 export default App;
-
 
 // Pseudo-code
 // 1. Form component

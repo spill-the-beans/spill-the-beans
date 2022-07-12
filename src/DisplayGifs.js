@@ -19,18 +19,24 @@ const DisplayGifs = (props) => {
         const dbRef = ref(database);
 
         // let title = savedMovie;
+        // const gifObject = {
+        //     'movie': {
+        //     'title': savedMovie,
+        //     'description': {
+        //     'key': savedId,
+        //     'img': savedGifs,
+        //     'keyword': savedKeyword
+        //     }
+        // }
+        // }
+        // update(dbRef, gifObject);
         const gifObject = {
-            'movie': {
-            'title': savedMovie,
-            'description': {
             'key': savedId,
+            'title': savedMovie,
             'img': savedGifs,
             'keyword': savedKeyword
-            }
         }
-        }
-        update(dbRef, gifObject);
-        
+        push(dbRef, gifObject);
     }
 
     return (
