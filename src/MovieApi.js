@@ -52,7 +52,7 @@ const MovieApi = (props) => {
                     {
                         selectedKeyword.map((keyword) => {
                             return (
-                                <GiphyApi key={keyword.id} keyword={keyword.name} movieTitle={props.movieTitle}/>
+                                <GiphyApi key={keyword.id} keyword={keyword.name} movieTitle={props.movieTitle} movieId={props.movieId}/>
                                 )
                         })
                     }

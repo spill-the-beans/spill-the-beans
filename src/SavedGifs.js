@@ -20,8 +20,10 @@ const SavedGifs = () => {
     setGroupGif(groupList);
     }, [savedGifs])
 
+    console.log(groupGif);
+
     const newArray = Object.values(groupGif);
-    
+    console.log(newArray);
     const sortedGifs = newArray.flat();
 
     useEffect(() => {
@@ -64,8 +66,10 @@ const SavedGifs = () => {
                             <li key={savedGif.key}>
                                 <button className="remove" onClick={ () => handleRemove(savedGif.key) }>❌</button>
                                 <h2>{savedGif.title}</h2>
-                                <img src={savedGif.img} alt={savedGif.title} />
-                                <h4>{savedGif.keyword}</h4>
+                                <div className="savedGifImageContainer">
+                                    <img src={savedGif.img} alt={savedGif.title} />
+                                    <h4>{savedGif.keyword}</h4>
+                                </div>
                             </li>
                         )
                     })

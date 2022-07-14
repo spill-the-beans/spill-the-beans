@@ -24,7 +24,7 @@ const GiphyApi = (props) => {
     return (
         <>
         {/* pass the list of gifs, movie title and keyword to DisplayGifs */}
-            <DisplayGifs gifs={gifs} movieTitle={props.movieTitle} movieKeyword={props.keyword}/>
+            <DisplayGifs gifs={gifs} movieId={props.movieId} movieTitle={props.movieTitle} movieKeyword={props.keyword}/>
         </>
     )
 }

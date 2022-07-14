@@ -1,6 +1,6 @@
 import { useState } from "react";
 import firebase from "./firebase";
-import { getDatabase, push, ref } from 'firebase/database';
+import { getDatabase, push, ref, set } from 'firebase/database';
 
 const DisplayGifs = (props) => {
     
@@ -14,17 +14,21 @@ const DisplayGifs = (props) => {
 
     // onClick event, user can push and save the displayed gif into firebase
     const handleSave = (savedMovie, savedId, savedGifs, savedKeyword) => {
-
+        
         const database = getDatabase(firebase);
         const dbRef = ref(database);
-
-        const gifObject = {
-            'key': savedId,
-            'title': savedMovie,
-            'img': savedGifs,
-            'keyword': savedKeyword
+        const movieIdRef = ref(database, `${savedId}/${firebaseKey}`)
+        
+        const obj = {
+            // 'key': savedId,
+            // 'title': savedMovie,
+            'img': [savedGifs],
+            // 'keyword': [savedKeyword]
         }
-        push(dbRef, gifObject);
+        // push(movieIdRef, obj);
+        push(movieIdRef, obj);
+        const firebaseKey = obj.key;
+        console.log(firebaseKey);
     }
 
     return (
@@ -35,7 +39,7 @@ const DisplayGifs = (props) => {
                 ? 
                 <>
                     <li key={props.gifs[randomIndex].id}>
-                        <button onClick={ () => handleSave(props.movieTitle, props.gifs[randomIndex].id, props.gifs[randomIndex].images.original.url, props.movieKeyword) }>Keep it!</button>
+                        <button onClick={ () => handleSave(props.movieTitle, props.movieId, props.gifs[randomIndex].images.original.url, props.movieKeyword) }>Keep it!</button>
                         <div className="gifContainer" onClick={handleClick}>
                             <p>Click me!</p>
                             <img src={props.gifs[randomIndex].images.original.url} alt={props.gifs[randomIndex].title} />
